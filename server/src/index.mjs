@@ -3,6 +3,7 @@ import bodyParser from "body-parser";
 import chalk from "chalk";
 import properties from "./config/properties.mjs";
 import connection from "./config/connection.mjs";
+import { router as userRouter } from "./users/users.routes.mjs";
 
 const serving = chalk.bold.blue;
 
@@ -18,6 +19,10 @@ connection();
 
 // initializing routes
 const router = express.Router();
+
+// using routes
+app.use("/api", router);
+userRouter(router);
 
 // initializing server
 app.listen(properties.PORT, () =>
