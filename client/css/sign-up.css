@@ -1,0 +1,15 @@
+main {
+  min-height: 95vh;
+}
+
+.form > input,
+.form > label,
+.form > button {
+  width: 80%;
+  max-width: 400px;
+}
+
+footer {
+  position: static;
+  background-color: rgba(0, 0, 0, 0.65);
+}
