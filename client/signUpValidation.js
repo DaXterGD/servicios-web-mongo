@@ -9,6 +9,7 @@ const $signUpButton = $(".sign-up > button");
 
 $signUpForm.addEventListener("submit", (e) => {
   e.preventDefault();
+  $signUpButton.setAttribute("disabled", "");
 
   const username = $("#username");
   const phone = $("#phone");
@@ -113,10 +114,10 @@ $signUpForm.addEventListener("submit", (e) => {
           $signUpButton.textContent = "¡Bienvenido!";
           setTimeout(() => {
             location.pathname = "client/login.html";
-          }, 2000);
+          }, 1500);
         }
       } catch (err) {
-        $signUpButton.textContent = "Hubo un error, intente más tarde";
+        $signUpButton.textContent = "Hubo un error, intenta más tarde";
 
         $signUpButton.classList.remove("success");
         $signUpButton.classList.add("error");
@@ -135,5 +136,6 @@ $signUpForm.addEventListener("submit", (e) => {
     $signUpButton.classList.remove("error");
 
     $signUpButton.textContent = "Completar registro";
+    $signUpButton.removeAttribute("disabled");
   }, 2500);
 });
