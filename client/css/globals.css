@@ -69,6 +69,22 @@ img {
       opacity: 0.6;
     }
   }
+
+  .input-error {
+    border-color: #ff4444;
+    &::placeholder {
+      color: #ff4444;
+    }
+  }
+
+  .error {
+    background-color: #ff4444;
+  }
+
+  .success {
+    color: #272727;
+    background-color: #5afc62;
+  }
 }
 
 input,
@@ -110,13 +126,14 @@ button {
   font-weight: bold;
   border: none;
   background-color: #d8d8d8;
-  transition: filter 300ms ease;
+  transition: all 300ms ease;
 }
 
 button:hover,
 button:focus {
   cursor: pointer;
-  filter: invert(1);
+  background-color: #272727;
+  color: #e4e4e4;
 }
 
 hr {

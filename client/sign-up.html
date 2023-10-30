@@ -17,7 +17,7 @@
   </head>
   <body>
     <main>
-      <form class="form" method="POST" action="http://127.0.0.1:4000/api/add">
+      <form class="form sign-up" method="POST" action="http://127.0.0.1:4000/api/add">
         <div class="logo-container">
           <img src="assets/burguer.jpg" alt="Logo" class="logo" />
         </div>
@@ -31,7 +31,6 @@
           id="username"
           name="username"
           placeholder="Tu nombre de usuario"
-          required
           maxlength="30"
         />
         <label for="phone">Número de celular</label>
@@ -40,7 +39,6 @@
           id="phone"
           name="phone"
           placeholder="1234567890"
-          required
           maxlength="10"
         />
         <label for="date-of-birth">Fecha de nacimiento</label>
@@ -49,7 +47,6 @@
           id="date-of-birth"
           name="dateOfBirth"
           placeholder="Tu fecha de nacimiento"
-          required
         />
         <label for="password">Contraseña</label>
         <input
@@ -57,7 +54,6 @@
           id="password"
           name="password"
           placeholder="Tu contraseña"
-          required
         />
         <label for="confirm-password">Confirma tu contraseña</label>
         <input
@@ -65,7 +61,6 @@
           id="confirm-password"
           name="confirmPassword"
           placeholder="Confirma tu contraseña"
-          required
         />
         <button type="submit">Completar registro</button>
         <hr />
@@ -79,5 +74,6 @@
       ¡A Comernos Eso! - Todos los derechos reservados | Programa ADSO - SENA |
       Hecho por: Daniel Osorio
     </footer>
+    <script src="signUpValidation.js"></script>
   </body>
 </html>
