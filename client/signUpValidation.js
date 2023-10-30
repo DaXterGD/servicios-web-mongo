@@ -1,8 +1,8 @@
 const $ = (element) => document.querySelector(element);
 
-const validateUserName = /^[a-zA-Z][a-zA-Z0-9]{4,49}$/;
+const validateUserName = /^[a-zA-Zñ][a-zA-Zñ0-9]{4,49}$/;
 const validatePhone = /^\d{10}$/;
-const validatePassword = /^(?=.*\d)[a-zA-Z0-9-_.\*¿?$#%&]{10,100}$/;
+const validatePassword = /^(?=.*\d)[a-zA-Zñ0-9-_.\*¿?$#%&]{10,100}$/;
 
 const $signUpForm = $(".sign-up");
 const $signUpButton = $(".sign-up > button");
@@ -93,8 +93,34 @@ $signUpForm.addEventListener("submit", (e) => {
     $signUpButton.classList.remove("error");
     $signUpButton.classList.add("success");
     $signUpButton.textContent = "Completando...";
-    setTimeout(() => {
-      e.target.submit();
+
+    setTimeout(async () => {
+      try {
+        const response = await fetch("http://127.0.0.1:4000/api/add", {
+          method: "POST",
+          body: JSON.stringify(data),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+
+        if (response.status === 500) {
+          $signUpButton.textContent = "Este usuario ya existe :(";
+
+          $signUpButton.classList.remove("success");
+          $signUpButton.classList.add("error");
+        } else {
+          $signUpButton.textContent = "¡Bienvenido!";
+          setTimeout(() => {
+            location.pathname = "client/login.html";
+          }, 2000);
+        }
+      } catch (err) {
+        $signUpButton.textContent = "Hubo un error, intente más tarde";
+
+        $signUpButton.classList.remove("success");
+        $signUpButton.classList.add("error");
+      }
     }, 1000);
   }
 

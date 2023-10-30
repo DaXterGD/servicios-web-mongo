@@ -1,26 +1,26 @@
-import { Schema } from "mongoose";
+import { Schema } from 'mongoose'
 
 const schema = new Schema(
   {
     username: {
       type: String,
       required: true,
-      unique: true,
+      unique: true
     },
     phone: {
       type: Number,
       unique: true,
-      required: true,
+      required: true
     },
     dateOfBirth: {
       type: String,
-      required: true,
+      required: true
     },
     password: {
       type: String,
-      required: false,
-    },
+      required: false
+    }
   },
-  { timestamps: true }  
-);
-export default schema;
+  { timestamps: true }
+)
+export default schema
