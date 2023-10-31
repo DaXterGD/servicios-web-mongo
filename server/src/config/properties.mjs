@@ -1,5 +1,5 @@
 const properties = {
   PORT: 4000,
-  DB: 'mongodb://127.0.0.1:27017/aComernosEso'
+  DB: 'mongodb+srv://daxtergd:aOaCvIweWxeOpAbg@acomernoseso.vepokxy.mongodb.net/?retryWrites=true&w=majority'
 }
 export default properties
