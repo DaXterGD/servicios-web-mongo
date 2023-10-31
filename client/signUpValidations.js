@@ -7,7 +7,7 @@ const validatePassword = /^(?=.*\d)[a-zA-Zñ0-9-_.\*¿?$#%&]{10,100}$/;
 const $signUpForm = $(".sign-up");
 const $signUpButton = $(".sign-up > button");
 
-$signUpForm.addEventListener("submit", (e) => {
+$signUpForm.addEventListener("submit", async (e) => {
   e.preventDefault();
   $signUpButton.setAttribute("disabled", "");
 
@@ -85,45 +85,32 @@ $signUpForm.addEventListener("submit", (e) => {
     $signUpButton.textContent = "Las contraseñas no coinciden";
     $signUpButton.classList.add("error");
   } else {
-    username.classList.remove("input-error");
-    phone.classList.remove("input-error");
-    dateOfBirth.classList.remove("input-error");
-    password.classList.remove("input-error");
-    confirmPassword.classList.remove("input-error");
+    try {
+      const response = await fetch("http://127.0.0.1:4000/signup", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const responseJSON = await response.json();
 
-    $signUpButton.classList.remove("error");
-    $signUpButton.classList.add("success");
-    $signUpButton.textContent = "Completando...";
-
-    setTimeout(async () => {
-      try {
-        const response = await fetch("http://127.0.0.1:4000/signup", {
-          method: "POST",
-          body: JSON.stringify(data),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-        const responseJSON = await response.json();
-
-        if (response.status === 500) {
-          $signUpButton.textContent = `${responseJSON.message}`;
-
-          $signUpButton.classList.remove("success");
-          $signUpButton.classList.add("error");
-        } else {
-          $signUpButton.textContent = `${responseJSON.message}`;
-          setTimeout(() => {
-            location.pathname = "client/login.html";
-          }, 1500);
-        }
-      } catch (err) {
-        $signUpButton.textContent = "Hubo un error, intenta más tarde";
-
-        $signUpButton.classList.remove("success");
+      if (response.status === 500) {
+        $signUpButton.textContent = `${responseJSON.message}`;
         $signUpButton.classList.add("error");
+      } else {
+        $signUpButton.textContent = `${responseJSON.message}`;
+        $signUpButton.classList.add("success");
+        setTimeout(() => {
+          location.pathname = "client/login.html";
+        }, 1000);
       }
-    }, 1000);
+    } catch (err) {
+      $signUpButton.textContent = "Hubo un error, intenta más tarde";
+
+      $signUpButton.classList.remove("success");
+      $signUpButton.classList.add("error");
+    }
   }
 
   setTimeout(() => {
@@ -138,5 +125,5 @@ $signUpForm.addEventListener("submit", (e) => {
 
     $signUpButton.textContent = "Completar registro";
     $signUpButton.removeAttribute("disabled");
-  }, 2500);
+  }, 2000);
 });

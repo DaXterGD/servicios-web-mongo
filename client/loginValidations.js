@@ -3,7 +3,7 @@ const $ = (element) => document.querySelector(element);
 const $loginForm = $(".login");
 const $loginButton = $(".login > button");
 
-$loginForm.addEventListener("submit", (e) => {
+$loginForm.addEventListener("submit", async (e) => {
   e.preventDefault();
   $loginButton.setAttribute("disabled", "");
 
@@ -31,42 +31,30 @@ $loginForm.addEventListener("submit", (e) => {
     $loginButton.textContent = "Debes ingresar tu contraseña";
     $loginButton.classList.add("error");
   } else {
-    username.classList.remove("input-error");
-    password.classList.remove("input-error");
+    try {
+      const response = await fetch("http://127.0.0.1:4000/login", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const responseJSON = await response.json();
 
-    $loginButton.classList.remove("error");
-    $loginButton.classList.add("success");
-    $loginButton.textContent = "Ingresando...";
-
-    setTimeout(async () => {
-      try {
-        const response = await fetch("http://127.0.0.1:4000/login", {
-          method: "POST",
-          body: JSON.stringify(data),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-        const responseJSON = await response.json();
-
-        if (response.status === 500) {
-          $loginButton.textContent = `${responseJSON.message}`;
-
-          $loginButton.classList.remove("success");
-          $loginButton.classList.add("error");
-        } else {
-          $loginButton.textContent = `${responseJSON.message}`;
-          setTimeout(() => {
-            location.assign("http://127.0.0.1:4000/productos");
-          }, 1000);
-        }
-      } catch (error) {
-        $loginButton.textContent = "Hubo un error, intenta más tarde";
-
-        $loginButton.classList.remove("success");
+      if (response.status === 500) {
+        $loginButton.textContent = `${responseJSON.message}`;
         $loginButton.classList.add("error");
+      } else {
+        $loginButton.textContent = `${responseJSON.message}`;
+        $loginButton.classList.add("success");
+        setTimeout(() => {
+          location.assign("http://127.0.0.1:4000/productos");
+        }, 1000);
       }
-    }, 1000);
+    } catch (error) {
+      $loginButton.textContent = "Hubo un error, intenta más tarde";
+      $loginButton.classList.add("error");
+    }
   }
 
   setTimeout(() => {
@@ -78,5 +66,5 @@ $loginForm.addEventListener("submit", (e) => {
 
     $loginButton.textContent = "Iniciar sesión";
     $loginButton.removeAttribute("disabled");
-  }, 2500);
+  }, 2000);
 });
