@@ -97,21 +97,22 @@ $signUpForm.addEventListener("submit", (e) => {
 
     setTimeout(async () => {
       try {
-        const response = await fetch("http://127.0.0.1:4000/api/add", {
+        const response = await fetch("http://127.0.0.1:4000/signup", {
           method: "POST",
           body: JSON.stringify(data),
           headers: {
             "Content-Type": "application/json",
           },
         });
+        const responseJSON = await response.json();
 
         if (response.status === 500) {
-          $signUpButton.textContent = "Este usuario ya existe :(";
+          $signUpButton.textContent = `${responseJSON.message}`;
 
           $signUpButton.classList.remove("success");
           $signUpButton.classList.add("error");
         } else {
-          $signUpButton.textContent = "¡Bienvenido!";
+          $signUpButton.textContent = `${responseJSON.message}`;
           setTimeout(() => {
             location.pathname = "client/login.html";
           }, 1500);

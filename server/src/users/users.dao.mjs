@@ -7,7 +7,7 @@ schema.static = {
     users.save(cb)
   },
   get: (query, cb) => {
-    this.fin(query, cb)
+    this.find(query, cb)
   }
 }
 const usersModel = mongoose.model('users', schema)

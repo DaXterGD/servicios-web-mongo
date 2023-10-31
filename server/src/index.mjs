@@ -23,7 +23,7 @@ connection()
 const router = express.Router()
 
 // using routes
-app.use('/api', router)
+app.use('/', router)
 userRouter(router)
 
 // initializing server
