@@ -102,7 +102,7 @@ $signUpForm.addEventListener("submit", async (e) => {
         $signUpButton.textContent = `${responseJSON.message}`;
         $signUpButton.classList.add("success");
         setTimeout(() => {
-          location.pathname = "client/login.html";
+          location.pathname = "client/index.html";
         }, 1000);
       }
     } catch (err) {

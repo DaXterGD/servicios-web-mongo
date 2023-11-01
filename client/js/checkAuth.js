@@ -29,7 +29,7 @@ $logOutButton.addEventListener("click", async () => {
     $logOutError.style.setProperty("color", "red");
     $logOutError.textContent = responseJSON.message;
   } else {
-    location.pathname = "client/login.html";
+    location.pathname = "client/index.html";
   }
 
   setTimeout(() => {
