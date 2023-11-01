@@ -56,7 +56,7 @@ export const checkAuth = (req, res) => {
     res
       .status(200)
       .json({
-        message: `¡Bienvenido, ${user.username}! Aún estamos construyendo el sitio, no hay mucho que ver por aquí`
+        message: `¡Bienvenid@, ${user.username}! Aún estamos construyendo el sitio, no hay mucho que ver por aquí`
       })
   } else {
     res.status(500).json({ message: 'No has iniciado sesión' })
