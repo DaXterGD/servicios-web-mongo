@@ -86,7 +86,7 @@ $signUpForm.addEventListener("submit", async (e) => {
     $signUpButton.classList.add("error");
   } else {
     try {
-      const response = await fetch("http://127.0.0.1:4000/signup", {
+      const response = await fetch("https://a-comernos-eso-api.onrender.com/signup", {
         method: "POST",
         body: JSON.stringify(data),
         headers: {

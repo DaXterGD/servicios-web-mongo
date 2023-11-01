@@ -1,5 +1,5 @@
 addEventListener("DOMContentLoaded", async (e) => {
-  const response = await fetch("http://127.0.0.1:4000/checkauth");
+  const response = await fetch("https://a-comernos-eso-api.onrender.com/checkauth");
   const responseJSON = await response.json();
 
   if (response.status === 500) {
@@ -20,7 +20,7 @@ const $logOutButton = document.querySelector(".log-out");
 $logOutButton.addEventListener("click", async () => {
   $logOutButton.setAttribute("disabled", "");
 
-  const response = await fetch("http://127.0.0.1:4000/logout");
+  const response = await fetch("https://a-comernos-eso-api.onrender.com/logout");
   const responseJSON = await response.json();
   let $logOutError;
 
