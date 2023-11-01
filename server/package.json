@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon ./src/index.mjs"
+    "dev": "node --watch ./src/index.mjs"
   },
   "keywords": [],
   "author": "",
@@ -18,7 +18,6 @@
     "mongoose": "^7.6.3"
   },
   "devDependencies": {
-    "nodemon": "^3.0.1",
     "standard": "^17.1.0"
   },
   "eslintConfig": {
