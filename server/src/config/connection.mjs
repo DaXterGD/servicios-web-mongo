@@ -12,7 +12,7 @@ const terminated = chalk.bold.cyan
 const connection = () => {
   mongoose
     .connect(dbURI, { useNewUrlParser: true })
-    .then(() => console.log(connected(`Mondodb connected on ${dbURI}`)))
+    .then(() => console.log(connected('Mondodb connected successfully')))
     .catch((err) => console.log(error(`Connection failed: ${err}`)))
 
   process.on('SIGINT', () => {

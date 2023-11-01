@@ -48,7 +48,7 @@ $loginForm.addEventListener("submit", async (e) => {
         $loginButton.textContent = `${responseJSON.message}`;
         $loginButton.classList.add("success");
         setTimeout(() => {
-          location.assign("http://127.0.0.1:4000/productos");
+          location.pathname = "client/products.html";
         }, 1000);
       }
     } catch (error) {
