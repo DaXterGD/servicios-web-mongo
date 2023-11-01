@@ -35,3 +35,7 @@ Para clonar este repositorio y preparar el proyecto has lo siguiente:
 La **API** de este proyecto se encuentra alojada en el siguiente **[enlace](https://a-comernos-eso-api.onrender.com/)** a través del servicio [Render](https://render.com/), sin embargo, Esta **API** no cuenta con una ruta inicial o ruta por defecto. Para consultar los usuarios almacenados en la base de datos, usa la ruta `/users` o este **[enlace](https://a-comernos-eso-api.onrender.com/users).**
 
 Si quieres examinar el código de esta **API** hecha en [Express](https://expressjs.com/), clona el repositorio con el comando `git clone https://github.com/DaXterGD/servicios-web-mongo.git`. El código referente al servidor se encuentra en el directorio `server`
+
+### Nota
+
+Si notas que al hacer una petición al servidor **(ya sea iniciando sesión o registrándote, por ejemplo)** este no responde o la petición se queda pendiente de manera indefinida, no te preocupes; esto se debe a que el servicio [Render](https://render.com/) suspende el servidor automáticamente al notar que no se hacen peticiones a la **API**  en cierto lapso de tiempo. El largo tiempo de espera cuando se hace la primera petición al servidor luego de un largo rato significa que [Render](https://render.com/) se encuentra inicializando el servidor y ejecutando todos los comandos necesarios para levantar nuevamente el servicio.
