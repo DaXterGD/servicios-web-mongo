@@ -14,7 +14,7 @@ Tomando como referencia lo visto en el componente formativo **“Construcción d
 Para clonar este repositorio y preparar el proyecto has lo siguiente:
 
 - Usa en tu terminal el comando `git clone https://github.com/DaXterGD/servicios-web-mongo.git`
-- Pocisionate dentro del directorio del repositorio y posteriormente en el directorio donde esta construido el **cliente** de la aplicación usando el comando`cd servicios-web-mongo/client` y abre tu editor con `code .` o `code-insiders .`
+- Pocisionate dentro del directorio del repositorio y posteriormente en el directorio donde esta construido el **cliente** de la aplicación usando el comando `cd servicios-web-mongo/client` y abre tu editor con `code .` o `code-insiders .`
 - Si usas el editor de código [Visual Studio Code](https://code.visualstudio.com/), descarga la extensión [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) para levantar un servidor local en el que podrás probar los archivos **HTML**
 - Abre el archivo `index.html`
 
