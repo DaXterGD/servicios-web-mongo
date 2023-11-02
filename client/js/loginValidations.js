@@ -1,8 +1,10 @@
 const $ = (element) => document.querySelector(element);
 
+// se obtiene del DOM el formulario y el botón para enviar la información de este
 const $loginForm = $(".login");
 const $loginButton = $(".login > button");
 
+// cuando se envíen los datos del formulario, se ejecuta esta función qu contiene todas las validaciones
 $loginForm.addEventListener("submit", async (e) => {
   e.preventDefault();
   $loginButton.setAttribute("disabled", "");
@@ -14,6 +16,7 @@ $loginForm.addEventListener("submit", async (e) => {
     password: password.value,
   };
 
+  // validaciones de datos
   if (!data.username && !data.password) {
     username.classList.add("input-error");
     password.classList.add("input-error");
@@ -30,15 +33,20 @@ $loginForm.addEventListener("submit", async (e) => {
 
     $loginButton.textContent = "Debes ingresar tu contraseña";
     $loginButton.classList.add("error");
-  } else {
+  }
+  // si todas las validaciones son correctas, entonces se enviarán los datos al servidor
+  else {
     try {
-      const response = await fetch("https://a-comernos-eso-api.onrender.com/login", {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await fetch(
+        "https://a-comernos-eso-api.onrender.com/login",
+        {
+          method: "POST",
+          body: JSON.stringify(data),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       const responseJSON = await response.json();
 
       if (response.status === 500) {
@@ -48,6 +56,7 @@ $loginForm.addEventListener("submit", async (e) => {
         $loginButton.textContent = `${responseJSON.message}`;
         $loginButton.classList.add("success");
         setTimeout(() => {
+          // en caso de que el login sea exitoso, se redirecciona al usuario a la página de inicio
           location.pathname = "client/products.html";
         }, 1000);
       }
@@ -57,6 +66,7 @@ $loginForm.addEventListener("submit", async (e) => {
     }
   }
 
+  // todos los mensajes que se muestren en el formulario se removerán luego de 2 segundos
   setTimeout(() => {
     username.classList.remove("input-error");
     password.classList.remove("input-error");

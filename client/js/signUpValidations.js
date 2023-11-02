@@ -1,12 +1,15 @@
 const $ = (element) => document.querySelector(element);
 
+// expresiones regulares para validaciones de los datos ingresados en el formulario por el usuario
 const validateUserName = /^[a-zA-Zñ][a-zA-Zñ0-9]{4,49}$/;
 const validatePhone = /^\d{10}$/;
 const validatePassword = /^(?=.*\d)[a-zA-Zñ0-9-_.\*¿?$#%&]{10,100}$/;
 
+// se obtiene del DOM el formulario y el botón para enviar la información de este
 const $signUpForm = $(".sign-up");
 const $signUpButton = $(".sign-up > button");
 
+// cuando se envíen los datos del formulario, se ejecuta esta función qu contiene todas las validaciones
 $signUpForm.addEventListener("submit", async (e) => {
   e.preventDefault();
   $signUpButton.setAttribute("disabled", "");
@@ -24,6 +27,7 @@ $signUpForm.addEventListener("submit", async (e) => {
     confirmPassword: confirmPassword.value,
   };
 
+  // validaciones de datos
   if (
     !data.username &&
     !data.phone &&
@@ -84,15 +88,20 @@ $signUpForm.addEventListener("submit", async (e) => {
 
     $signUpButton.textContent = "Las contraseñas no coinciden";
     $signUpButton.classList.add("error");
-  } else {
+  }
+  // si todas las validaciones son correctas, entonces se enviarán los datos al servidor
+  else {
     try {
-      const response = await fetch("https://a-comernos-eso-api.onrender.com/signup", {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await fetch(
+        "https://a-comernos-eso-api.onrender.com/signup",
+        {
+          method: "POST",
+          body: JSON.stringify(data),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       const responseJSON = await response.json();
 
       if (response.status === 500) {
@@ -102,6 +111,7 @@ $signUpForm.addEventListener("submit", async (e) => {
         $signUpButton.textContent = `${responseJSON.message}`;
         $signUpButton.classList.add("success");
         setTimeout(() => {
+          // en caso de que el registro sea exitoso, se redirecciona al usuario a la página de login
           location.pathname = "client/index.html";
         }, 1000);
       }
@@ -113,6 +123,7 @@ $signUpForm.addEventListener("submit", async (e) => {
     }
   }
 
+  // todos los mensajes que se muestren en el formulario se removerán luego de 2 segundos
   setTimeout(() => {
     username.classList.remove("input-error");
     phone.classList.remove("input-error");

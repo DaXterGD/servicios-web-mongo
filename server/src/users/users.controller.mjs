@@ -1,8 +1,11 @@
 import usersModel from './users.dao.mjs'
 
+// variable que mantiene el estado de si el usuario se encuentra logueado en la aplicación
 let isLogged = false
+// variable que almacena los datos del usuario para manejarlos cuando este desea registrarse o iniciar sesión
 let user
 
+// función manejadora de registro de usuarios
 export const signUp = async (req, res) => {
   user = {
     username: req.body.username,
@@ -28,6 +31,7 @@ export const signUp = async (req, res) => {
   }
 }
 
+// función manejadora de inicio de sesión
 export const logIn = async (req, res) => {
   user = {
     username: req.body.username,
@@ -51,6 +55,7 @@ export const logIn = async (req, res) => {
   }
 }
 
+// función manejadora que chequea la autenticación del usuario
 export const checkAuth = (req, res) => {
   if (isLogged) {
     res
@@ -63,6 +68,7 @@ export const checkAuth = (req, res) => {
   }
 }
 
+// función manejadora que cierra la sesión del usuario
 export const logOut = (req, res) => {
   if (isLogged) {
     isLogged = false
@@ -72,6 +78,7 @@ export const logOut = (req, res) => {
   }
 }
 
+// función manejadora que envía los usuarios existentes en la base de datos
 export const getUsers = async (req, res) => {
   try {
     const createdUsers = await usersModel.find({})

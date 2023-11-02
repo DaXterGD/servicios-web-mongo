@@ -8,7 +8,7 @@ import { router as userRouter } from './users/users.routes.mjs'
 
 const serving = chalk.bold.blue
 
-// creating the app
+// montaje de la aplicación
 const app = express()
 const bodyParserJSON = bodyParser.json()
 const bodyParserURLEncoded = bodyParser.urlencoded({ extended: true })
@@ -16,17 +16,17 @@ app.use(cors())
 app.use(bodyParserJSON)
 app.use(bodyParserURLEncoded)
 
-// initializing database connection
+// se establece conexión con la base de datos
 connection()
 
-// initializing routes
+// inicialización de enrutador de express
 const router = express.Router()
 
-// using routes
+// implementación de rutas definidas en la aplicación
 app.use('/', router)
 userRouter(router)
 
-// initializing server
+// inicialización del servidor
 app.listen(properties.PORT, () =>
   console.log(serving(`Server running on port ${properties.PORT}`))
 )
