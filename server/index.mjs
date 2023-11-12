@@ -2,10 +2,11 @@ import express from 'express'
 import cors from 'cors'
 import bodyParser from 'body-parser'
 import chalk from 'chalk'
-import properties from './config/properties.mjs'
+import { config } from 'dotenv'
 import connection from './config/connection.mjs'
 import { router as userRouter } from './users/users.routes.mjs'
 
+config({ path: './config/.env' })
 const serving = chalk.bold.blue
 
 // montaje de la aplicación
@@ -17,7 +18,7 @@ app.use(bodyParserJSON)
 app.use(bodyParserURLEncoded)
 
 // se establece conexión con la base de datos
-connection()
+connection(process.env.DATABASE_URL)
 
 // inicialización de enrutador de express
 const router = express.Router()
@@ -27,6 +28,6 @@ app.use('/', router)
 userRouter(router)
 
 // inicialización del servidor
-app.listen(properties.PORT, () =>
-  console.log(serving(`Server running on port ${properties.PORT}`))
+app.listen(process.env.PORT, () =>
+  console.log(serving(`Server running on port ${process.env.PORT}`))
 )
