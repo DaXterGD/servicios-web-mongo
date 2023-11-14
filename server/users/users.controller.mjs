@@ -1,3 +1,4 @@
+import bcrypt from 'bcryptjs'
 import usersModel from './users.dao.mjs'
 
 // variable que mantiene el estado de si el usuario se encuentra logueado en la aplicación
@@ -23,7 +24,9 @@ export const signUp = async (req, res) => {
     } else if (phoneExist) {
       res.status(500).json({ message: 'Este celular ya existe :(' })
     } else {
-      await usersModel.create(user)
+      const newUser = new usersModel({...user})
+      newUser.password = await newUser.encryptPassword(user.password)
+      await usersModel.create(newUser)
       res.status(200).json({ message: `¡Bienvenido, ${user.username}!` })
     }
   } catch (err) {
@@ -39,14 +42,19 @@ export const logIn = async (req, res) => {
   }
 
   try {
-    const usernameExist = await usersModel.findOne({ username: user.username })
-    if (usernameExist) {
-      if (usernameExist.password === user.password) {
-        isLogged = true
-        res.status(200).json({ message: `¡Bienvenido, ${user.username}!` })
-      } else {
-        res.status(500).json({ message: 'Contraseña incorrecta' })
-      }
+    const userExist = await usersModel.findOne({ username: user.username })
+    if (userExist) {
+      bcrypt.compare(user.password, userExist.password, (err, match) => {
+        if (err) {
+          res.status(500).json({ message: 'Ha ocurrido un error inesperado' })
+        } if (match) {
+          isLogged = true
+          res.status(200).json({ message: `¡Bienvenido, ${user.username}!` })  
+        }
+        else {
+          res.status(500).json({ message: 'Contraseña incorrecta' })
+        }
+      })
     } else {
       res.status(500).json({ message: 'Este usuario no existe' })
     }
