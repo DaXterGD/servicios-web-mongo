@@ -5,6 +5,7 @@ import chalk from 'chalk'
 import { config } from 'dotenv'
 import connection from './config/connection.mjs'
 import { router as userRouter } from './users/users.routes.mjs'
+import { router as productRouter } from './products/products.routes.mjs'
 
 config({ path: './config/.env' })
 const serving = chalk.bold.blue
@@ -25,7 +26,9 @@ const router = express.Router()
 
 // implementación de rutas definidas en la aplicación
 app.use('/', router)
+app.use('/products', router)
 userRouter(router)
+productRouter(router)
 
 // inicialización del servidor
 app.listen(process.env.PORT, () =>
