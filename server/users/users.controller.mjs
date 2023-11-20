@@ -1,5 +1,5 @@
 import bcrypt from 'bcryptjs'
-import usersModel from './users.dao.mjs'
+import UsersModel from './users.dao.mjs'
 
 // variable que mantiene el estado de si el usuario se encuentra logueado en la aplicación
 let isLogged = false
@@ -17,16 +17,16 @@ export const signUp = async (req, res) => {
   user.phone = parseInt(user.phone)
 
   try {
-    const usernameExist = await usersModel.findOne({ username: user.username })
-    const phoneExist = await usersModel.findOne({ phone: user.phone })
+    const usernameExist = await UsersModel.findOne({ username: user.username })
+    const phoneExist = await UsersModel.findOne({ phone: user.phone })
     if (usernameExist) {
       res.status(500).json({ message: 'Este usuario ya existe :(' })
     } else if (phoneExist) {
       res.status(500).json({ message: 'Este celular ya existe :(' })
     } else {
-      const newUser = new usersModel({...user})
+      const newUser = new UsersModel({ ...user })
       newUser.password = await newUser.encryptPassword(user.password)
-      await usersModel.create(newUser)
+      await UsersModel.create(newUser)
       res.status(200).json({ message: `¡Bienvenido, ${user.username}!` })
     }
   } catch (err) {
@@ -42,16 +42,15 @@ export const logIn = async (req, res) => {
   }
 
   try {
-    const userExist = await usersModel.findOne({ username: user.username })
+    const userExist = await UsersModel.findOne({ username: user.username })
     if (userExist) {
       bcrypt.compare(user.password, userExist.password, (err, match) => {
         if (err) {
           res.status(500).json({ message: 'Ha ocurrido un error inesperado' })
         } if (match) {
           isLogged = true
-          res.status(200).json({ message: `¡Bienvenido, ${user.username}!` })  
-        }
-        else {
+          res.status(200).json({ message: `¡Bienvenido, ${user.username}!` })
+        } else {
           res.status(500).json({ message: 'Contraseña incorrecta' })
         }
       })
@@ -89,7 +88,7 @@ export const logOut = (req, res) => {
 // función manejadora que envía los usuarios existentes en la base de datos
 export const getUsers = async (req, res) => {
   try {
-    const createdUsers = await usersModel.find({})
+    const createdUsers = await UsersModel.find({})
     res.status(200).json({ createdUsers })
   } catch (err) {
     res.status(500).json({ error: 'There was an error.' })

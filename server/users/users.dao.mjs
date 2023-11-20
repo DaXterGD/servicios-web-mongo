@@ -19,5 +19,5 @@ schema.methods.encryptPassword = async (password) => {
 }
 
 // una vez que se tiene el esquema y métodos de la base de datos definidos, se crea el modelo
-const usersModel = mongoose.model('users', schema)
-export default usersModel
+const UsersModel = mongoose.model('users', schema)
+export default UsersModel
