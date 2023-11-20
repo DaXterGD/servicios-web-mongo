@@ -16,7 +16,7 @@ export const addProduct = async (req, res) => {
   if (!name) {
     res.status(500).json({ message: 'Debes ingresar el nombre del producto' })
   } else if (!category) {
-    res.status(500).json({ message: 'Debes ingresar la categoría producto' })
+    res.status(500).json({ message: 'Debes ingresar la categoría del producto' })
   } else if (!price) {
     res.status(500).json({ message: 'Debes ingresar el precio del producto' })
   } else if (!imageUrl) {
@@ -35,10 +35,12 @@ export const addProduct = async (req, res) => {
       } else if (imageExist) {
         res.status(500).json({ message: 'Esta imagen ya existe :(' })
       } else {
-        await ProductsModel.create(name, category, price, imageUrl, description)
+        const newProduct = new ProductsModel({ name, category, price, imageUrl, description })
+        await ProductsModel.create(newProduct)
         res.status(200).json({ message: `¡Producto ${name} insertado!` })
       }
     } catch (err) {
+      console.log(err)
       res.status(500).json({ message: 'Ha ocurrido un error inesperado' })
     }
   }
