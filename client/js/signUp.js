@@ -1,4 +1,4 @@
-const $ = (element) => document.querySelector(element);
+import { $ } from "./utils.js"
 
 // expresiones regulares para validaciones de los datos ingresados en el formulario por el usuario
 const validateUserName = /^[a-zA-Zñ][a-zA-Zñ0-9]{4,49}$/;
@@ -113,7 +113,7 @@ $signUpForm.addEventListener("submit", async (e) => {
         setTimeout(() => {
           // en caso de que el registro sea exitoso, se redirecciona al usuario a la página de login
           location.pathname = "client/index.html";
-        }, 1000);
+        }, 500);
       }
     } catch (err) {
       $signUpButton.textContent = "Hubo un error, intenta más tarde";

@@ -1,0 +1,73 @@
+.logo {
+  font-size: 2rem;
+}
+
+.menu {
+  width: fit-content;
+  height: auto;
+  position: static;
+  flex-direction: row;
+  gap: 1.5rem;
+  background-color: transparent;
+  backdrop-filter: initial;
+  opacity: 1;
+  pointer-events: all;
+  transform: translateX(0);
+}
+
+.menu > a {
+  width: auto;
+  padding: 0.4rem 0;
+  font-size: 1.4rem;
+  color: #333;
+  background-image: linear-gradient(90deg, #333, #333);
+  background-size: 0% 3px;
+  background-repeat: no-repeat;
+  background-position: bottom right;
+  transition: background-size cubic-bezier(0.79, 0.14, 0.15, 0.86) 200ms;
+}
+
+.menu > a:hover {
+  background-size: 100% 3px;
+}
+
+.menu > .button {
+  width: auto;
+  height: 38px;
+  padding: 0 2.5rem;
+  font-size: 1rem; 
+  color: #333;
+  background-color: #d8d8d8;
+  border-radius: 30px;
+  transition: all 300ms ease;
+}
+
+.menu > .button:hover,
+.menu > .button:focus {
+  color: #d8d8d8;
+  background-color: #333;
+}
+
+.menu > .error {
+  color: #e4e4e4;
+  background-color: #ff4444;
+}
+
+.menu > .success {
+  color: #272727;
+  background-color: #5afc62;
+}
+
+.hamburger {
+  display: none;
+  pointer-events: none;
+}
+
+.categories-container {
+  display: flex;
+  gap: 1rem;
+}
+
+.category {
+  margin-bottom: 2rem;
+}

@@ -1,0 +1,31 @@
+main {
+  padding: 4rem 2rem;
+}
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+}
+
+.product {
+  width: 100%;
+  max-width: 600px;
+  margin-inline: auto;
+  flex-direction: row;
+  gap: 0;
+}
+
+.product > .product-img {
+  width: 150px;
+  border-radius: .5rem 0 0 .5rem;
+}
+
+.product > .product-img > img {
+  width: 100%;
+  height: 100%;
+}
+
+.product-info {
+  width: calc(100% - 150px);
+  padding-right: 2rem;
+}

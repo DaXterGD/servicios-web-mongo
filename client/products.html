@@ -3,11 +3,72 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="assets/burguer.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="css/products.css" />
+    <link
+      rel="stylesheet"
+      href="css/products-tablet.css"
+      media="screen and (min-width: 768px)"
+    />
+    <link
+      rel="stylesheet"
+      href="css/products-desktop.css"
+      media="screen and (min-width: 1150px)"
+    />
     <title>Productos</title>
   </head>
   <body>
-    <button class="log-out">Cerrar sesión</button>
-    <h2 class="log-out-error"></h2>
-    <script src="js/checkAuth.js"></script>
+    <header class="header">
+      <section class="container">
+        <a href="#" class="logo">¡A Comernos Eso!</a>
+        <nav class="menu">
+          <a href="#">Reservas</a>
+          <a href="#">Salón de eventos</a>
+          <a href="#">Sedes</a>
+        </nav>
+        <button class="hamburger">
+          <span class="stick-1"></span>
+          <span class="stick-2"></span>
+          <span class="stick-3"></span>
+        </button>
+      </section>
+    </header>
+    <main>
+      <h1 class="title">Menú</h1>
+      <hr />
+      <div class="categories-container">
+        <select name="product-category" id="product-category" class="category">
+          <option>Selecciona una categoría</option>
+          <option value="entradas">Entradas</option>
+          <option value="ensaladas">Ensaladas</option>
+          <option value="chicharronería">Chicharronería</option>
+          <option value="delicias de la casa">Delicias de la casa</option>
+          <option value="lomos de la casa">Lomos de la casa</option>
+          <option value="parrilla">Parrilla</option>
+          <option value="cortes importados">Cortes importados</option>
+          <option value="cortes certificados">Cortes certificados</option>
+          <option value="menú infantil">Menú infantil</option>
+          <option value="mariscos">Mariscos</option>
+          <option value="postres">Postres</option>
+          <option value="desayunos">Desayunos</option>
+          <option value="bebidas">Bebidas</option>
+        </select>
+        <select name="product-subcategory" id="product-subcategory" class="subcategory">
+          <option>Selecciona una subcategoría</option>
+          <option value="">Subcategoría 1</option>
+          <option value="">Subcategoría 2</option>
+          <option value="">Subcategoría 3</option>
+          <option value="">Subcategoría 4</option>
+          <option value="">Subcategoría 5</option>
+        </select>
+      </div>
+      <section class="products">
+      </section>
+    </main>
+    <footer class="footer">
+      ¡A Comernos Eso! - Todos los derechos reservados | Programa ADSO - SENA |
+      Hecho por: Daniel Osorio
+    </footer>
+    <script src="js/products.js" type="module"></script>
   </body>
 </html>
