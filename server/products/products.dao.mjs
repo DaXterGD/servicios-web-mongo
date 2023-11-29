@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 import schema from './products.schema.mjs'
 
-// se importa el esquema de la base de datos para definir métodos para guardar datos y obtener los datos
+// se importa el esquema de la base de datos para definir métodos estáticos para guardar datos y obtener los datos
 schema.static = {
   create: (data, cb) => {
     const product = new this(data)

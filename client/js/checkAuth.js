@@ -1,6 +1,6 @@
 import { $ } from './utils.js'
 
-// cuando se haya cargado esta página, se ejecuta esta función que comprueba la autenticación del usuario, dependiendo de la respuesta del servidor se mostrará un mensaje u otro
+// esta función comprueba la autenticación del usuario, dependiendo de la respuesta del servidor se mostrarán diferentes botones en el header
 export const checkAuth = async () => {
   const response = await fetch(
     'https://a-comernos-eso-api.onrender.com/checkauth'

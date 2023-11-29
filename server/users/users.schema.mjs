@@ -1,6 +1,6 @@
 import { Schema } from 'mongoose'
 
-// definición del esquema de la base de datos con sus tipos y restricciones
+// definición del esquema de la tabla de usuarios con sus tipos y restricciones
 const schema = new Schema(
   {
     username: {

@@ -1,8 +1,6 @@
 import mongoose from 'mongoose'
 import chalk from 'chalk'
 
-// se obtiene la url de la base de datos del archivo properties
-
 // definición de variables para mostrar mensajes con colores personalizados en la consola
 const connected = chalk.bold.magenta
 const error = chalk.bold.red
@@ -15,6 +13,7 @@ const connection = (dbURI) => {
     .then(() => console.log(connected('MongoDB connected successfully')))
     .catch((err) => console.log(error(`Connection failed: ${err}`)))
 
+  // se mostrará un mensaje en consoola cuando el servidor se apague
   process.on('SIGINT', () => {
     mongoose.connection
       .close()

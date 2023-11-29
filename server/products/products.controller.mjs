@@ -13,6 +13,7 @@ export const getProducts = async (req, res) => {
 // función manejadora para creación de productos
 export const addProduct = async (req, res) => {
   let { name, category, price, imageUrl, description } = req.body
+  // validaciones de los datos recibidos
   if (!name) {
     res.status(500).json({ message: 'Debes ingresar el nombre del producto' })
   } else if (!category) {
@@ -26,6 +27,7 @@ export const addProduct = async (req, res) => {
   } else if (typeof price !== 'number') {
     res.status(500).json({ message: 'El precio del producto debe ser un número' })
   } else {
+    // si las validaciones son correctas, se procede a hacer otra validación que comprueba si el producto enviado ya existe en la base de datos
     price = parseInt(price)
     try {
       const productExist = await ProductsModel.findOne({ name })
